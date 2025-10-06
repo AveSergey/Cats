@@ -1,10 +1,20 @@
-from cProfile import label
 from tkinter import *
 from PIL import Image, ImageTk
 import requests
 from io import BytesIO
 
-from pygame.examples.aliens import load_image
+
+def loade_image():
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        image_data =BytesIO(response.content)
+        img = Image.open(image_data)
+        return ImageTk.PhotoImage(img)
+    except Exception as err:
+        print(f'Произошла ошибка: {err}')
+        return None
+
 
 window = Tk()
 window.title('Cats!')

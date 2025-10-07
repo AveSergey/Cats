@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 import requests
 from io import BytesIO
 
-Allowed_tags = ['sleep', 'jump', 'fight', 'white', 'bengal', 'siamese', 'cute', 'play']
+Allowed_tags = ['sleep', 'jump', 'fight', 'white', 'black', 'siamese', 'cute', 'play']
 
 
 def load_image(url):
@@ -34,6 +34,11 @@ def open_new_window():
         label.image = img
 
 
+def clear_combobox():
+    tag_combobox.set('')
+    open_new_window()
+
+
 def exit():
     window.destroy()
 
@@ -59,6 +64,10 @@ tag_combobox.pack()
 
 load_button = Button(text='Загрузить по тегу', command=open_new_window)
 load_button.pack()
+
+load_random_button = Button(text='Случайный котик', command=clear_combobox)  # Кнопка очищает значение тега в combobox,
+# а потом вызывает функцию для загрузки нового изображения
+load_random_button.pack(pady=10)
 
 url = 'https://cataas.com/cat'
 
